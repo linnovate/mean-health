@@ -3,11 +3,8 @@ var path = require('path');
 var fs = require('fs');
 
 exports.emit = function(event) {
-
 	try {
-		var root = path.dirname(module.parent.paths[0]);
-
-		loadPackage(root, function(err, info) {
+		loadPackage(module.parent.paths, 0, function(err, info) {
 			if (err || !info) return;
 			packagePulse(info.name, info.version);
 
@@ -57,9 +54,15 @@ function parseJson(data) {
 	}
 }
 
-function loadPackage(root, callback) {
+function loadPackage(paths, index, callback) {
+
+        var root = path.dirname(paths[index]);
+
 	fs.readFile(root + '/package.json', function(err, data) {
-		if (err || !data) return callback(true, err.message);
+		if (err || !data) {
+		  if (paths[index+1]) return loadPackage(paths,index+1,callback);
+		  return callback(true, err.message);
+		}
 
 		var json = parseJson(data);
 		if (json) return callback(null, json);
