@@ -6,7 +6,7 @@ exports.emit = function(event) {
 	try {
 		loadPackage(module.parent.paths, 0, function(err, info) {
 			if (err || !info) return;
-			packagePulse(info.name, info.version);
+			packagePulse(info.name, info.version, event);
 
 		});
 
@@ -23,7 +23,7 @@ function packagePulse(name, version) {
 	var options = {
 		hostname: 'network.mean.io',
 		port: 443,
-		path: '/packages/pulse?name=' + name + '&version=' + version,
+		path: '/packages/pulse?name=' + name + '&version=' + version+'&event='+event,
 		method: 'GET'
 	};
 
