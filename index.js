@@ -23,7 +23,7 @@ function packagePulse(name, version, event) {
 	var options = {
 		hostname: 'network.mean.io',
 		port: 443,
-		path: '/packages/pulse?name=' + name + '&version=' + version+'&event='+event,
+		path: '/packages/pulse?name=' + name + '&version=' + version + '&event=' + event,
 		method: 'GET'
 	};
 
@@ -56,15 +56,18 @@ function parseJson(data) {
 
 function loadPackage(paths, index, callback) {
 
-        var root = path.dirname(paths[index]);
+	var root = path.dirname(paths[index]);
 
 	fs.readFile(root + '/package.json', function(err, data) {
 		if (err || !data) {
-		  if (paths[index+1]) return loadPackage(paths,index+1,callback);
-		  return callback(true, err.message);
+			if (paths[index + 1]) return loadPackage(paths, index + 1, callback);
+			return callback(true, err.message);
 		}
 
 		var json = parseJson(data);
+
+		if (json.name === 'mean-health' || paths[index + 1]) return loadPackage(paths, index + 1, callback);
+		
 		if (json) return callback(null, json);
 
 		return callback(true, e.message);
