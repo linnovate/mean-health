@@ -1,6 +1,6 @@
 {
   "name": "mean-health",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Provides notifications per version as well as provides metrics to understand usage of vulnerable packages ",
   "main": "index.js",
   "scripts": {
