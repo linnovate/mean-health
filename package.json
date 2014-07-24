@@ -1,0 +1,22 @@
+{
+  "name": "mean-health",
+  "version": "0.0.0",
+  "description": "Provides notifications per version as well as provides metrics to understand usage of vulnerable packages ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/linnovate/mean-health.git"
+  },
+  "keywords": [
+    "meanio"
+  ],
+  "author": "Yonatan Ellman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/linnovate/mean-health/issues"
+  },
+  "homepage": "https://github.com/linnovate/mean-health"
+}
