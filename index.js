@@ -16,7 +16,7 @@ exports.emit = function(event) {
 
 };
 
-function packagePulse(name, version) {
+function packagePulse(name, version, event) {
 
 	var https = require('https');
 
