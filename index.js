@@ -66,7 +66,7 @@ function loadPackage(paths, index, callback) {
 
 		var json = parseJson(data);
 
-		if (json.name === 'mean-health' || paths[index + 1]) return loadPackage(paths, index + 1, callback);
+		if (json.name === 'mean-health' && paths[index + 1]) return loadPackage(paths, index + 1, callback);
 		
 		if (json) return callback(null, json);
 
